@@ -50,7 +50,8 @@ class Status
      * })
      * @Annotation\Required({"required":"true"})
      * @Annotation\Options({"min":"2", "max":"1000"})
-     * @Annotation\Filter({"name":"stripTags", "name":"stringTrim"})
+     * @Annotation\Filter({"name":"stripTags"})
+     * @Annotation\Filter({"name":"stringTrim"})
      * @Annotation\Validator({"name":"stringLength", "options":{
      *     "encoding":"utf-8",
      *     "min":"2",
