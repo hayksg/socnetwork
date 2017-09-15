@@ -23,6 +23,7 @@ $form->prepare();
 <div class="row">
     <div class="col-lg-8 col-md-11 col-sm-12">
     <?= $this->form()->openTag($form); ?>
+    <?= $this->formHidden($form->get('csrf')) ?>
     <?php
         foreach ($this->form as $element) {
             $label = '';

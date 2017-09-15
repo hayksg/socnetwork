@@ -43,6 +43,7 @@ $form->prepare();
 <div class="row">
     <div class="col-sm-6">
         <?= $this->form()->openTag($form) ?>
+        <?= $this->formHidden($form->get('csrf')) ?>
         <div class="row">
             <div class="col-sm-6">
                 <?= $this->formRow($form->get('firstName')) ?>

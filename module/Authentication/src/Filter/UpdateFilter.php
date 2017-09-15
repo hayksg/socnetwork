@@ -100,6 +100,10 @@ class UpdateFilter extends InputFilter
                         'min' => 4,
                         'max' => 5,
                     ],
+                    'name'    => 'inArray',
+                    'options' => [
+                        'haystack' => ['user', 'admin'],
+                    ],
                 ],
             ],
         ]);
@@ -126,7 +130,7 @@ class UpdateFilter extends InputFilter
             'allowEmpty' => true,
             'validators' => [
                 ['name'    => 'FileUploadFile'],
-                // ['name'    => 'FileIsImage'], /* Did not work on server */
+                ['name'    => 'FileIsImage'], /* Did not work on server */
                 [
                     'name' => 'Zend\Validator\File\Extension',
                     'options' => [

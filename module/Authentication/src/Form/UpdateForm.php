@@ -20,6 +20,14 @@ class UpdateForm extends Form
 
     protected function createElements()
     {
+        $csrf = new Element\Csrf('csrf');
+        $csrf->setOptions([
+            'crsf_options' => [
+                'timeout' => 600,
+            ],
+        ]);
+        $this->add($csrf);
+
         $firstName = new Element\Text('firstName');
         $firstName->setLabel('First name:');
         $firstName->setLabelAttributes([

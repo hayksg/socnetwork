@@ -20,6 +20,14 @@ class LoginForm extends Form
 
     private function createElements()
     {
+        $csrf = new Element\Csrf('csrf');
+        $csrf->setOptions([
+            'crsf_options' => [
+                'timeout' => 600,
+            ],
+        ]);
+        $this->add($csrf);
+
         $username = new Element\Text('username');
         $username->setLabel('Username');
         $username->setAttributes([

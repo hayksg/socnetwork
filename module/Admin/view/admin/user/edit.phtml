@@ -1,10 +1,6 @@
 <?php
 $headTitle = 'Edit user';
 $this->headTitle($headTitle);
-
-$form = $this->form;
-$form->setAttribute('action', $this->url('admin/users', ['action' => 'edit', 'id' => $this->id]));
-$form->prepare();
 ?>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -21,16 +17,42 @@ $form->prepare();
         </div>
     </div>
 </div>
-<!-- Hidden form for delete user -->
-<form action="<?= $this->url('admin/users', ['action' => 'delete', 'id' => $this->id]) ?>"
-      method="post"
-      class="delete-user-form"
->
-    <button type="button">Yes</button>
-</form>
+
+
+
+
+
+
+<!-- Hidden form for delete user or admin -->
+<?php
+$form = $this->form;
+$form->setAttributes([
+    'action' => $this->url('admin/users', ['action' => 'delete', 'id' => $this->id]),
+    'class'  => 'delete-user-form',
+]);
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('csrf'));
+echo $this->form()->closeTag();
+?>
+
+
+
+
+
 <br>
 <?= $this->partial('partial/breadcrumbTemplate', ['headTitle' => $headTitle]) ?>
 <?= $this->flashMessenger()->render('success', ['success-message']) ?>
+<?php
+$form->setAttributes([
+    'action'  => $this->url('admin/users', ['action' => 'edit', 'id' => $this->id]),
+    'id'      => 'update-form',
+    'name'    => 'update-form',
+    'class'   => 'form-horizontal',
+]);
+$form->prepare();
+?>
 <br>
 <div class="row">
     <div class="col-lg-5 col-md-6 col-sm-8">

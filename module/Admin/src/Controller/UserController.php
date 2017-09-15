@@ -119,31 +119,44 @@ class UserController extends AbstractActionController
             return $this->notFoundAction();
         }
 
-        /* Block for deletion user profile image on server */
-        $userImage = $user->getImage();
-        if ($userImage) {
-            if (is_file(getcwd() . '/public_html' . $userImage)) {
-                unlink(getcwd() . '/public_html' . $userImage);
-            }
-        }
-        /* End block */
+        $form = $this->updateForm;
+        $form->setHydrator(new DoctrineObject($this->entityManager));
+        $form->bind($user);
+        $form->setValidationGroup(['csrf']);
 
-        /* Block for deletion gallery image on server */
-        $gallery = $this->galleryRepository->findBy(['user' => $user]);
+        $form->setData($this->request->getPost());
 
-        array_walk($gallery, function ($imgObj) {
-            if ($imgObj) {
-                if (is_file(getcwd() . '/public_html' . $imgObj->getImage())) {
-                    unlink(getcwd() . '/public_html' . $imgObj->getImage());
+        if ($form->isValid()) {
+            $user = $form->getData();
+
+            /* Block for deletion user profile image on server */
+            $userImage = $user->getImage();
+            if ($userImage) {
+                if (is_file(getcwd() . '/public_html' . $userImage)) {
+                    unlink(getcwd() . '/public_html' . $userImage);
                 }
             }
-        });
-        /* End block */
+            /* End block */
 
-        $this->entityManager->remove($user);
-        $this->entityManager->flush();
+            /* Block for deletion gallery image on server */
+            $gallery = $this->galleryRepository->findBy(['user' => $user]);
 
-        $this->flashMessenger()->addSuccessMessage('User deleted');
-        return $this->redirect()->toRoute('admin/users');
+            array_walk($gallery, function ($imgObj) {
+                if ($imgObj) {
+                    if (is_file(getcwd() . '/public_html' . $imgObj->getImage())) {
+                        unlink(getcwd() . '/public_html' . $imgObj->getImage());
+                    }
+                }
+            });
+            /* End block */
+
+            $this->entityManager->remove($user);
+            $this->entityManager->flush();
+
+            $this->flashMessenger()->addSuccessMessage('User deleted');
+            return $this->redirect()->toRoute('admin/users');
+        }
+
+        return $this->notFoundAction();
     }
 }
