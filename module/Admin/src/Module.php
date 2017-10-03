@@ -6,6 +6,9 @@ use Zend\Mvc\MvcEvent;
 use Zend\Authentication\AuthenticationService;
 use Doctrine\ORM\EntityManager;
 use Authentication\Form\UpdateForm;
+use Zend\ModuleManager\ModuleManagerInterface;
+use Zend\Http;
+use Zend\Session\Container;
 
 class Module
 {
@@ -59,6 +62,31 @@ class Module
             },
             100
         );
+    }
 
+    public function init(ModuleManagerInterface $moduleManager)
+    {
+        $moduleManager->getEventManager()->getSharedManager()->attach(
+            __NAMESPACE__,
+            'dispatch',
+            function ($e) {
+                $request = $e->getRequest();
+                if (! $request instanceof Http\Request) {
+                    return;
+                }
+
+                $translator = $e->getApplication()->getServiceManager()->get('translator');
+                $container = new Container('language');
+                $lang = $container->language;
+
+                if (! $lang) {
+                    $lang = 'en_US';
+                }
+
+                $translator->setLocale($lang);
+                $e->getViewModel()->setVariable('language', $lang);
+            },
+            100
+        );
     }
 }

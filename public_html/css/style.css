@@ -233,3 +233,16 @@ li.already-liked {
 #contactUs textarea {
     min-height: 200px;
 }
+
+#change-language-form {
+    margin-left: 20px;
+}
+
+#change-language-form select {
+    padding: 0 2px;
+    margin-bottom: 3px;
+}
+
+#change-language-form .form-control {
+    height: 30px;
+}

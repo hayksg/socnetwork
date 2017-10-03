@@ -12,8 +12,8 @@ use Application\Entity\Relationship;
 use Zend\Paginator\Paginator;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
-
 use Authentication\Controller\LogoutController;
+use Zend\Session\Container;
 
 class IndexController extends AbstractActionController
 {
@@ -137,5 +137,15 @@ class IndexController extends AbstractActionController
         }
 
         return $paginator;
+    }
+
+    public function translateAction()
+    {
+        $query = $this->request->getQuery('language', 'en_US');
+
+        $container = new Container('language');
+        $container->language = $query;
+
+        return $this->redirect()->toRoute('home');
     }
 }

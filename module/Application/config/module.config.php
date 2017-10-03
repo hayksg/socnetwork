@@ -30,9 +30,12 @@ return [
     'router' => [
         'routes' => [
             'home' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
-                    'route'    => '/',
+                    'route'    => '/[:action]',
+                    'constraints' => [
+                        'action' => '[a-z]+',
+                    ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',

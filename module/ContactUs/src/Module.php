@@ -4,6 +4,9 @@ namespace ContactUs;
 
 use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\SmtpOptions;
+use Zend\Session\Container;
+use Zend\Http;
+use Zend\ModuleManager\ModuleManagerInterface;
 
 class Module
 {
@@ -39,5 +42,31 @@ class Module
                 },
             ],
         ];
+    }
+
+    public function init(ModuleManagerInterface $moduleManager)
+    {
+        $moduleManager->getEventManager()->getSharedManager()->attach(
+            __NAMESPACE__,
+            'dispatch',
+            function ($e) {
+                $request = $e->getRequest();
+                if (! $request instanceof Http\Request) {
+                    return;
+                }
+
+                $translator = $e->getApplication()->getServiceManager()->get('translator');
+                $container = new Container('language');
+                $lang = $container->language;
+
+                if (! $lang) {
+                    $lang = 'en_US';
+                }
+
+                $translator->setLocale($lang);
+                $e->getViewModel()->setVariable('language', $lang);
+            },
+            100
+        );
     }
 }

@@ -11,6 +11,9 @@ use Doctrine\ORM\EntityManager;
 use Authentication\Form\UpdateForm;
 use Zend\Mvc\MvcEvent;
 use Application\Controller\IndexController;
+use Zend\Session\Container;
+use Zend\Http;
+use Zend\ModuleManager\ModuleManagerInterface;
 
 class Module
 {
@@ -139,6 +142,32 @@ class Module
                         return $controller->redirect()->toRoute('home');
                     }
                 }
+            },
+            100
+        );
+    }
+
+    public function init(ModuleManagerInterface $moduleManager)
+    {
+        $moduleManager->getEventManager()->getSharedManager()->attach(
+            __NAMESPACE__,
+            'dispatch',
+            function ($e) {
+                $request = $e->getRequest();
+                if (! $request instanceof Http\Request) {
+                    return;
+                }
+
+                $translator = $e->getApplication()->getServiceManager()->get('translator');
+                $container = new Container('language');
+                $lang = $container->language;
+
+                if (! $lang) {
+                    $lang = 'en_US';
+                }
+
+                $translator->setLocale($lang);
+                $e->getViewModel()->setVariable('language', $lang);
             },
             100
         );

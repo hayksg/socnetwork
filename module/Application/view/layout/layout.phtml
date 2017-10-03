@@ -1,5 +1,9 @@
 <?php $user = $this->identity() ?>
 <?= $this->doctype() ?>
+<?php
+$currentLang = $this->layout()->language;
+$currentLang ? $currentLang : '';
+?>
 
 <html lang="en">
     <head>
@@ -54,7 +58,7 @@
                     </a>
                     <?php if (! $user) : ?>
                     <ul class="nav navbar-nav contact-us-no-identified-user">
-                        <li><a href="<?= $this->url('contact-us') ?>">Contact Us</a></li>
+                        <li><a href="<?= $this->url('contact-us') ?>"><?= $this->translate('Contact Us') ?></a></li>
                     </ul>
                     <?php endif; ?>
                 </div>
@@ -63,9 +67,12 @@
                         <?= $this->navigation('top_navigation')->menu()->setUlClass("nav navbar-nav")->render() ?>
                         <form class="navbar-form navbar-left" role="search" action="/search" method="post">
                             <div class="form-group">
-                                <input class="form-control" placeholder="Find people" type="text" name="searchPeople">
+                                <input class="form-control"
+                                       placeholder="<?= $this->translate('Find people') ?>"
+                                       type="text" name="searchPeople"
+                                >
                             </div>
-                            <button type="submit" class="btn btn-default">Search</button>
+                            <button type="submit" class="btn btn-default"><?= $this->translate('Search') ?></button>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -76,33 +83,64 @@
                                    aria-expanded="false"
                                    title="<?= $this->getNameOrUsername($this, $user) ?>"
                                 >
-                                    <span>Hi&nbsp;
+                                    <span><?= $this->translate('Hi') ?>&nbsp;
                                         <strong><?= $this->cutString($this->getNameOrUsername($this, $user), 8) ?></strong>
                                     </span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?= $this->url('profile', ['username' => $user->getUsername()]) ?>">Profile</a></li>
-                                    <li><a href="<?= $this->url('friend') ?>">Friends</a></li>
+                                    <li>
+                                        <a href="<?= $this->url('profile', ['username' => $user->getUsername()]) ?>">
+                                            <?= $this->translate('Profile') ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= $this->url('friend') ?>">
+                                            <?= $this->translate('Friends') ?>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="<?= $this->url('profile', ['username' => $user->getUsername(), 'action' => 'edit']) ?>">
-                                            Update profile
+                                            <?= $this->translate('Update profile') ?>
                                         </a>
                                     </li>
                                     <?php if ($user && ($user->getRole() === 'superadmin' || $user->getRole() === 'admin')) : ?>
-                                    <li><a href="<?= $this->url('admin') ?>">Admin area</a></li>
+                                    <li>
+                                        <a href="<?= $this->url('admin') ?>">
+                                            <?= $this->translate('Admin area') ?>
+                                        </a>
+                                    </li>
                                     <?php endif; ?>
                                     <li class="divider"></li>
-                                    <form action="/logout" method="post">
-                                        <button class="form-logout">Log Out</button>
-                                    </form>
+                                    <li>
+                                        <form action="<?= $this->url('home', ['action' => 'translate']) ?>" method="get" class="form-inline" id="change-language-form">
+                                            <select id="languageElement"
+                                                    class="form-control"
+                                                    name="language"
+                                                    onchange="$('#change-language-form').submit()"
+                                            >
+                                                <option <?php echo $currentLang === 'en_US' ? 'selected' : '' ?> value="en_US">
+                                                    <?= $this->translate('English') ?>
+                                                </option>
+                                                <option <?php echo $currentLang === 'ru_RU' ? 'selected' : '' ?> value="ru_RU">
+                                                    <?= $this->translate('Russian') ?>
+                                                </option>
+                                            </select>
+                                        </form>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <form action="/logout" method="post">
+                                            <button class="form-logout"><?= $this->translate('Log Out') ?></button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     <?php else : ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/register">Sign Up</a></li>
-                            <li><a href="/login">Log In</a></li>
+                            <li><a href="/register"><?= $this->translate('Sign Up') ?></a></li>
+                            <li><a href="/login"><?= $this->translate('Log In') ?></a></li>
                         </ul>
                     <?php endif; ?>
                 </div>
@@ -117,11 +155,11 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-push-6">
                         <p class="portfolio-box pull-right">
-                            <a href="/portfolio"><i class="fa fa-briefcase"></i> Portfolio</a>
+                            <a href="/portfolio"><i class="fa fa-briefcase"></i> <?= $this->translate('Portfolio') ?></a>
                         </p>
                     </div>
                     <div class="col-sm-6 col-sm-pull-6">
-                        <p>&copy; <?= $this->getYear() ?> by PHP-User. All rights reserved.</p>
+                        <p>&copy; <?= $this->getYear() ?> by PHP-User. <?= $this->translate('All rights reserved') ?>.</p>
                     </div>
                 </div>
             </div>

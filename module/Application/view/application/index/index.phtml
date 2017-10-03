@@ -4,8 +4,8 @@ $this->headTitle($headTitle);
 ?>
 <?php if (! $this->identity()) : ?>
     <br>
-    <h4>Welcome to the SocNet</h4>
-    <div>Please sign up to make a friends.</div>
+    <h4><?= $this->translate('Welcome to the SocNet') ?></h4>
+    <div><?= $this->translate('Please sign up to make a friends') ?>.</div>
     <br>
     <br>
     <div class="row">

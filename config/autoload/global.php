@@ -11,6 +11,22 @@
  * file.
  */
 
+use Zend\Mvc\I18n\Translator as T;
+
 return [
-    // ...
+    'translator' => [
+        'locale' => 'en_US',
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phparray',
+                'base_dir' => getcwd() . '/data/languages/phpArray',
+                'pattern'  => '%s.php',
+            ],
+        ],
+    ],
+    'service_manager' => [
+        'aliases' => [
+            'translator' => T::class,
+        ],
+    ],
 ];

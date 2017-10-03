@@ -11,7 +11,7 @@ $content = $form->get('content');
 $content->setAttribute('placeholder', "What's up " . $this->getNameOrUsername($this, $this->identity()) . '?');
 ?>
 <br>
-<h4><?= $headTitle ?></h4>
+<h4><?= $this->translate($headTitle) ?></h4>
 <?php if (! $this->hasFriends) : ?>
     <p>You have no friends for chatting</p>
 <?php else : ?>

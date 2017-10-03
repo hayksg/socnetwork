@@ -7,9 +7,9 @@ $currentUsername = $this->identity()->getUsername();
 <br>
 <div class="row">
     <div class="col-sm-12">
-        <h4>Your search for "<?= $this->escapeHtml($this->search) ?>"</h4>
+        <h4><?= $this->translate('Your search for') ?> "<?= $this->escapeHtml($this->search) ?>"</h4>
         <?php if (! $this->users) : ?>
-            <p>No results found, sorry.</p>
+            <p><?= $this->translate('No results found, sorry') ?>.</p>
         <?php else : ?>
             <br>
             <?php foreach ($this->users as $user) : ?>
