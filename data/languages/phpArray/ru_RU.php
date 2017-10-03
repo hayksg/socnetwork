@@ -22,7 +22,7 @@ return [
     'Form for registration' => 'Форма для регистрации',
     'Hi' => 'Пр.',
     'Update profile' => 'Редак. профиль',
-    'Admin area' => 'Админ арея',
+    'Admin area' => 'Админ зона',
     'Contact Us' => 'Свяжитесь с нами',
     'Welcome to the SocNet' => 'Добро пожаловать в SocNet',
     'Please sign up to make a friends' => 'Пожалуйста зарегистрируйтесь чтобы приобретать друзей',
