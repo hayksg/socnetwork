@@ -236,6 +236,7 @@ li.already-liked {
 
 #change-language-form {
     margin-left: 20px;
+    display: inline-block;
 }
 
 #change-language-form select {
