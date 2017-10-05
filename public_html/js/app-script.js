@@ -281,12 +281,11 @@ $(document).ready(function(){
 
 /////////   For top menu  ///////////////////////////////////////////////////////////////
 
-    /*if ($(document).width() > 768) {
-        $('.nav.navbar-nav.navbar-right a').css({
-            'marginLeft': '-26px',
-            'marginRight': '30px',
+    if ($(document).width() > 768) {
+        $('#change-language-form-with-flags').css({
+            'marginLeft': '20px',
         })
-    }*/
+    }
 
 /////////   END   ///////////////////////////////////////////////////////////////////////
 
