@@ -5,8 +5,8 @@ $this->headTitle($headTitle);
 <br>
 <?= $this->partial('partial/breadcrumbTemplate', ['headTitle' => $headTitle]) ?>
 <br>
-<p>You have the following capabilities:</p>
+<p><?= $this->translate('You have the following capabilities') ?>:</p>
 <ul class="list-unstyled">
-    <li><a href="/admin/statuses">Manage statuses</a></li>
-    <li><a href="/admin/users">Manage users</a></li>
+    <li><a href="/admin/statuses"><?= $this->translate('Manage statuses') ?></a></li>
+    <li><a href="/admin/users"><?= $this->translate('Manage users') ?></a></li>
 </ul>

@@ -29,4 +29,10 @@ return [
     'No results found, sorry' => 'Результаты не найдены, простите',
     'Login page' => 'Страница входа',
     'Register page' => 'Страница регистрации',
+    'Home' => 'Главная',
+    'Statuses' => 'Статусы',
+    'Users' => 'Пользователи',
+    'You have the following capabilities' => 'Вы имеете следующие права',
+    'Manage statuses' => 'Управление статусами',
+    'Manage users' => 'Управление пользователями',
 ];

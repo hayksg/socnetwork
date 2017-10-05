@@ -240,10 +240,24 @@ li.already-liked {
 }
 
 #change-language-form select {
-    padding: 0 2px;
-    margin-bottom: 3px;
+    padding: 0 0px;
 }
 
 #change-language-form .form-control {
     height: 30px;
+}
+
+#change-language-form-with-flags {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#change-language-form-with-flags button {
+    border: 1px solid #E1E1E1;
+    background-color: #F7F7F7;
+}
+
+#change-language-form-with-flags button:hover {
+    background-color: #E1E1E1;
 }

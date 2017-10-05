@@ -56,13 +56,14 @@ $currentLang ? $currentLang : '';
                         <img src="<?= $this->basePath('img/lets-talk.png') ?>" width="40" class="hidden-sm" alt="logo">
                         <span>SocNet</span>
                     </a>
-                    <?php if (! $user) : ?>
-                    <ul class="nav navbar-nav contact-us-no-identified-user">
-                        <li><a href="<?= $this->url('contact-us') ?>"><?= $this->translate('Contact Us') ?></a></li>
-                    </ul>
-                    <?php endif; ?>
+
                 </div>
                 <div class="collapse navbar-collapse">
+                    <?php if (! $user) : ?>
+                        <ul class="nav navbar-nav contact-us-no-identified-user">
+                            <li><a href="<?= $this->url('contact-us') ?>"><?= $this->translate('Contact Us') ?></a></li>
+                        </ul>
+                    <?php endif; ?>
                     <?php if ($user) : ?>
                         <?= $this->navigation('top_navigation')->menu()->setUlClass("nav navbar-nav")->render() ?>
                         <form class="navbar-form navbar-left" role="search" action="/search" method="post">
@@ -113,7 +114,11 @@ $currentLang ? $currentLang : '';
                                     <?php endif; ?>
                                     <li class="divider"></li>
                                     <li>
-                                        <form action="<?= $this->url('home', ['action' => 'translate']) ?>" method="get" class="form-inline" id="change-language-form">
+                                        <form action="<?= $this->url('home', ['action' => 'translate']) ?>"
+                                              method="get"
+                                              class="form-inline"
+                                              id="change-language-form"
+                                        >
                                             <select id="languageElement"
                                                     class="form-control"
                                                     name="language"
@@ -141,6 +146,16 @@ $currentLang ? $currentLang : '';
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="/register"><?= $this->translate('Sign Up') ?></a></li>
                             <li><a href="/login"><?= $this->translate('Log In') ?></a></li>
+                            <li>
+                                <form action="<?= $this->url('home', ['action' => 'translate']) ?>"
+                                      method="get"
+                                      class="form-inline"
+                                      id="change-language-form-with-flags"
+                                >
+                                    <button name="language" value="en_US"><img src="/img/flags/US.png" alt="flag"></button>
+                                    <button name="language" value="ru_RU"><img src="/img/flags/RU.png" alt="flag"></button>
+                                </form>
+                            </li>
                         </ul>
                     <?php endif; ?>
                 </div>

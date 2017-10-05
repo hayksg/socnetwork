@@ -8,12 +8,12 @@
             // if this isn't the last page, add a link and the separator:
             if ($key < count($this->pages) - 1):
                 ?>
-                <a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a>
+                <a href="<?= $page->getHref() ?>"><?= $this->translate($page->getLabel()) ?></a>
                 <?php
             // otherwise, output the name only:
             else:
                 ?>
-                <?= $page->getLabel() ?>
+                <?= $this->translate($page->getLabel()) ?>
             <?php endif; ?>
         </li>
     <?php endforeach; ?>

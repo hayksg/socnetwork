@@ -279,6 +279,15 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
 
+/////////   For top menu  ///////////////////////////////////////////////////////////////
+
+    /*if ($(document).width() > 768) {
+        $('.nav.navbar-nav.navbar-right a').css({
+            'marginLeft': '-26px',
+            'marginRight': '30px',
+        })
+    }*/
+
 /////////   END   ///////////////////////////////////////////////////////////////////////
 
 });
