@@ -49,13 +49,6 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="password_salt", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $passwordSalt;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="first_name", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
      */
     private $firstName;
@@ -196,30 +189,6 @@ class User
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Set passwordSalt
-     *
-     * @param string $passwordSalt
-     *
-     * @return User
-     */
-    public function setPasswordSalt($passwordSalt)
-    {
-        $this->passwordSalt = $passwordSalt;
-
-        return $this;
-    }
-
-    /**
-     * Get passwordSalt
-     *
-     * @return string
-     */
-    public function getPasswordSalt()
-    {
-        return $this->passwordSalt;
     }
 
     /**

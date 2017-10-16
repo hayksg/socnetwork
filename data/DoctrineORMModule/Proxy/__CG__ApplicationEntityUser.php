@@ -64,10 +64,10 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'passwordSalt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'firstName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'lastName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'location', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'image', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'active', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'submit'];
+            return ['__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'firstName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'lastName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'location', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'image', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'active', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'submit'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'passwordSalt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'firstName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'lastName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'location', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'image', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'active', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'submit'];
+        return ['__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'firstName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'lastName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'location', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'image', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'active', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'submit'];
     }
 
     /**
@@ -252,28 +252,6 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPassword', []);
 
         return parent::getPassword();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPasswordSalt($passwordSalt)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPasswordSalt', [$passwordSalt]);
-
-        return parent::setPasswordSalt($passwordSalt);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPasswordSalt()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPasswordSalt', []);
-
-        return parent::getPasswordSalt();
     }
 
     /**

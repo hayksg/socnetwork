@@ -10,6 +10,7 @@ use Application\Entity\User;
 use Authentication\Service\ValidationServiceInterface;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\Form\FormInterface;
+use Zend\Crypt\Password\Bcrypt;
 
 class RegisterController extends AbstractActionController
 {
@@ -28,12 +29,6 @@ class RegisterController extends AbstractActionController
         $this->registerForm       = $registerForm;
         $this->validationService  = $validationService;
         $this->ormAuthService     = $ormAuthService;
-    }
-
-    private function prepareData($user)
-    {
-        $user->setPasswordSalt(sha1(time() . 'userPasswordSalt'));
-        $user->setPassword(sha1('passwordStaticSalt' . $user->getPassword() . $user->getPasswordSalt()));
     }
 
     public function indexAction()
@@ -62,7 +57,10 @@ class RegisterController extends AbstractActionController
 
             if ($form->isValid() && empty($form->getMessages())) {
                 $cloneUser = clone $user; // to have not hashed password
-                $this->prepareData($user);
+
+                $bcrypt = new Bcrypt();
+                $hash = $bcrypt->create($user->getPassword());
+                $user->setPassword($hash);
 
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();

@@ -27,7 +27,8 @@
         "zendframework/zend-json": "^3.0",
         "zendframework/zend-mail": "^2.7",
         "zendframework/zend-math": "^3.0",
-        "zendframework/zend-mvc-i18n": "^1.0"
+        "zendframework/zend-mvc-i18n": "^1.0",
+        "zendframework/zend-crypt": "^3.2"
     },
     "autoload": {
         "psr-4": {

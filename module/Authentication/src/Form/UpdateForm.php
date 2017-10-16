@@ -28,14 +28,30 @@ class UpdateForm extends Form
         ]);
         $this->add($csrf);
 
+        $username = new Element\Text('username');
+        $username->setLabel('Username:');
+        $username->setLabelAttributes([
+            'class' => 'label-control',
+        ]);
+        $username->setAttributes([
+            'class'    => 'form-control',
+            'required' => 'required',
+            'id'       => 'username',
+        ]);
+        $username->setOptions([
+            'min' => 2,
+            'max' => 50,
+        ]);
+        $this->add($username);
+
         $firstName = new Element\Text('firstName');
         $firstName->setLabel('First name:');
         $firstName->setLabelAttributes([
             'class' => 'label-control',
         ]);
         $firstName->setAttributes([
-            'class'    => 'form-control',
-            'id'       => 'firstName',
+            'class' => 'form-control',
+            'id'    => 'firstName',
         ]);
         $firstName->setOptions([
             'min' => 2,
@@ -49,8 +65,8 @@ class UpdateForm extends Form
             'class' => 'label-control',
         ]);
         $lastName->setAttributes([
-            'class'    => 'form-control',
-            'id'       => 'lastName',
+            'class' => 'form-control',
+            'id'    => 'lastName',
         ]);
         $lastName->setOptions([
             'min' => 2,
@@ -64,8 +80,8 @@ class UpdateForm extends Form
             'class' => 'control-label',
         ]);
         $password->setAttributes([
-            'class'    => 'form-control',
-            'id'       => 'password',
+            'class' => 'form-control',
+            'id'    => 'password',
         ]);
         $password->setOptions([
             'min' => 2,
@@ -79,8 +95,8 @@ class UpdateForm extends Form
             'class' => 'control-label',
         ]);
         $location->setAttributes([
-            'class'    => 'form-control',
-            'id'       => 'location',
+            'class' => 'form-control',
+            'id'    => 'location',
         ]);
         $location->setOptions([
             'min' => 2,

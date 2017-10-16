@@ -287,6 +287,13 @@ $(document).ready(function(){
         })
     }
 
+/////////   Empty captcha value after unsuccessful authorization  ///////////////////////
+
+    // In order for the code to be executed only on a specific page
+    if (location.pathname.indexOf('/register') === 0) {
+        $('input#captcha').val('');
+    }
+
 /////////   END   ///////////////////////////////////////////////////////////////////////
 
 });

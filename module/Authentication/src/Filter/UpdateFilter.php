@@ -10,6 +10,34 @@ class UpdateFilter extends InputFilter
     public function __construct()
     {
         $this->add([
+            'name' => 'username',
+            'required' => true,
+            'filters' => [
+                ['name' => 'stripTags'],
+                ['name' => 'stringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'stringLength',
+                    'options' => [
+                        'encoding' => 'utf-8',
+                        'min' => 2,
+                        'max' => 100,
+                    ],
+                ],
+                [
+                    'name' => 'regex',
+                    'options' => [
+                        'pattern' => '/^[a-zA-Z]*$/i',
+                        'messages' => [
+                            "regexNotMatch" => "The input must contain only letters",
+                        ],
+                    ],
+                ]
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'firstName',
             'required'   => false,
             'filters'    => [

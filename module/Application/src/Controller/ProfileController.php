@@ -11,6 +11,7 @@ use Zend\View\Model\ViewModel;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Authentication\Form\UpdateForm;
 use Authentication\Controller\LogoutController;
+use Zend\Crypt\Password\Bcrypt;
 
 class ProfileController extends AbstractActionController
 {
@@ -147,8 +148,12 @@ class ProfileController extends AbstractActionController
 
                 /* In order, to not work, when an empty password  */
                 $postArray = $request->getPost()->toArray();
-                if (strlen($postArray['password']) >= 2) {
-                    $this->prepareData($user);
+
+                // more than 2 characters allowed
+                if (strlen($user->getPassword()) >= 2) {
+                    $bcrypt = new Bcrypt();
+                    $hash = $bcrypt->create($user->getPassword());
+                    $user->setPassword($hash);
                 }
                 /* End block */
 
@@ -164,12 +169,6 @@ class ProfileController extends AbstractActionController
             'form' => $form,
             'user' => $user,
         ]);
-    }
-
-    private function prepareData($user)
-    {
-        $user->setPasswordSalt(sha1(time() . 'userPasswordSalt'));
-        $user->setPassword(sha1('passwordStaticSalt' . $user->getPassword() . $user->getPasswordSalt()));
     }
 
     public function deleteAction()

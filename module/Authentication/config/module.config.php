@@ -4,6 +4,7 @@ namespace Authentication;
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
+use Zend\Crypt\Password\Bcrypt;
 
 return [
     'router' => [
@@ -52,7 +53,9 @@ return [
                 'identity_property'   => 'username',
                 'credential_property' => 'password',
                 'credential_callable' => function (\Application\Entity\User $user, $password) {
-                    if ($user->getPassword() == sha1('passwordStaticSalt' . $password . $user->getPasswordSalt())) {
+                    $bcrypt = new Bcrypt();
+
+                    if ($bcrypt->verify($password, $user->getPassword())) {
                         return true;
                     } else {
                         return false;
