@@ -18,6 +18,10 @@ body {
     height: 90px;
 }
 
+a:hover, a:focus {
+    outline: none;
+}
+
 div.container a.navbar-brand > img {
     display: inline;
     margin-top: -2px;

@@ -143,6 +143,10 @@ class ProfileController extends AbstractActionController
                     $filter->filter($files['file']);
 
                     $user->setImage('/img/user/' . $newFileName);
+
+                    if (is_file(getcwd() . '/public_html' . $oldImage)) {
+                        chmod(getcwd() . "/public_html/img/user/" . $newFileName, 0755);
+                    }
                 }
                 /* End actions */
 
@@ -150,7 +154,7 @@ class ProfileController extends AbstractActionController
                 $postArray = $request->getPost()->toArray();
 
                 // more than 2 characters allowed
-                if (strlen($user->getPassword()) >= 2) {
+                if (strlen($request->getPost('password')) >= 2) {
                     $bcrypt = new Bcrypt();
                     $hash = $bcrypt->create($user->getPassword());
                     $user->setPassword($hash);
@@ -178,6 +182,11 @@ class ProfileController extends AbstractActionController
         $user = $this->repository->findOneBy(['username' => $username]);
         if (! $user) {
             return $this->notFoundAction();
+        }
+
+        $oldImage = $user->getImage();
+        if (is_file(getcwd() . '/public_html' . $oldImage)) {
+            unlink(getcwd() . '/public_html' . $oldImage);
         }
 
         $user->setActive('0');
